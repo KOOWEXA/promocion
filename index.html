@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es-CU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KOOWEXA · Promoción</title>
+    <meta name="description" content="Promoción limitada de diseño web para emprendedores cubanos">
+    <meta property="og:title" content="KOOWEXA · Promoción">
+    <meta property="og:description" content="Promoción limitada de diseño web">
+    <meta property="og:image" content="https://github.com/KOOWEXA/oficial/raw/refs/heads/main/KOOWEXA.jpg">
+    <link rel="icon" type="image/jpeg" href="https://github.com/KOOWEXA/oficial/raw/refs/heads/main/KOOWEXA.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066FF;
+            --secondary: #00D4AA;
+            --accent: #7B61FF;
+            --dark: #0A0E27;
+            --gray: #9CA3AF;
+            --white: #FFFFFF;
+            --gradient-1: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+            --gradient-2: linear-gradient(135deg, #7B61FF 0%, #0066FF 100%);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --blur-amount: 20px;
+            --transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.25) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 212, 170, 0.18) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(123, 97, 255, 0.1) 0%, transparent 50%);
+            z-index: -2;
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+            animation: gridShift 20s linear infinite;
+        }
+
+        @keyframes gridShift {
+            from { transform: translate(0, 0); }
+            to { transform: translate(60px, 60px); }
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .logo svg {
+            height: 3.5rem;
+            width: auto;
+            filter: drop-shadow(0 0 18px rgba(0, 102, 255, 0.6));
+            transition: filter 0.5s;
+        }
+
+        .logo svg:hover {
+            filter: drop-shadow(0 0 28px rgba(0, 212, 170, 0.8));
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .promo-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            border-radius: 40px;
+            padding: 3.5rem 2.5rem 2.5rem;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(0, 102, 255, 0.15) inset;
+            transition: var(--transition);
+            animation: cardPop 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 42px;
+            padding: 2px;
+            background: linear-gradient(135deg, #0066FF, #00D4AA, #7B61FF, #0066FF);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+            animation: borderGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes cardPop {
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .promo-card.expired {
+            filter: grayscale(0.5);
+            pointer-events: none;
+            position: relative;
+        }
+
+        .promo-card.expired::after {
+            content: 'CADUCADA';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            color: rgba(255, 255, 255, 0.2);
+            background: rgba(10, 14, 39, 0.8);
+            letter-spacing: 6px;
+            z-index: 5;
+            border-radius: 40px;
+            transform: rotate(-4deg);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.6rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.5);
+            animation: badgeFloat 3s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-6px); }
+        }
+
+        .plan-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--white);
+            margin-top: 0.8rem;
+        }
+
+        .plan-price {
+            font-size: clamp(3.5rem, 10vw, 5.5rem);
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease-in-out infinite;
+            line-height: 1;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .plan-currency {
+            font-size: 0.45em;
+            font-weight: 600;
+            color: var(--gray);
+            background: none;
+            -webkit-text-fill-color: var(--gray);
+        }
+
+        .plan-currency-code {
+            font-size: 0.35em;
+            font-weight: 600;
+            color: var(--secondary);
+            background: none;
+            -webkit-text-fill-color: var(--secondary);
+            margin-left: 0.1em;
+            letter-spacing: 1px;
+        }
+
+        .plan-period {
+            font-size: 0.35em;
+            font-weight: 400;
+            color: var(--gray);
+            background: none;
+            -webkit-text-fill-color: var(--gray);
+            margin-left: 0.2em;
+        }
+
+        .savings {
+            color: var(--secondary);
+            background: rgba(0, 212, 170, 0.08);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            border: 1px dashed rgba(0, 212, 170, 0.3);
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+
+        .features {
+            list-style: none;
+            width: 100%;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .features li {
+            color: var(--gray);
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .features li::before {
+            content: '✓';
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .expiry-info {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .expiry-info .icon {
+            font-size: 1.2rem;
+        }
+
+        .expiry-info strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: 3rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.5rem;
+            width: 100%;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.4);
+            z-index: 99;
+            border: none;
+            pointer-events: none;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 35px rgba(0, 102, 255, 0.55);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.5rem 1rem;
+                justify-content: flex-start;
+                padding-top: 3rem;
+            }
+
+            .promo-card {
+                padding: 2.8rem 1.5rem 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .logo svg {
+                height: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+        <div class="promo-card" data-expiry="2026-05-15">
+            <span class="discount-badge">-25% DESCUENTO</span>
+            <h2 class="plan-name">PLAN PAGO FIJO</h2>
+            <div class="plan-price">
+                <span class="plan-currency">$</span>4500<span class="plan-currency-code">/CUP</span><span class="plan-period">Año</span>
+            </div>
+            <p class="savings">Antes <s style="opacity:0.6;">$6000</s> · Te ahorras $1500</p>
+            <ul class="features">
+                <li>Diseño moderno y responsive</li>
+                <li>Hasta 30 artículos</li>
+                <li>Asistencia personalizada 12/5</li>
+                <li>Sin marca de agua</li>
+                <li>Entrega rápida</li>
+                <li>Soporte por WhatsApp</li>
+            </ul>
+            <div class="expiry-info">
+                <span class="icon">⏳</span>
+                <span>Válido hasta <strong>15 de mayo de 2026</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025-2026 KOOWEXA · Promoción sujeta a términos y condiciones</p>
+    </footer>
+
+    <button id="backToTop" class="back-to-top" aria-label="Volver arriba">↑</button>
+
+    <script>
+        (function() {
+            var now = new Date();
+            now.setHours(0, 0, 0, 0);
+
+            var card = document.querySelector('.promo-card');
+            if (card) {
+                var expiry = card.getAttribute('data-expiry');
+                if (expiry) {
+                    var expDate = new Date(expiry + 'T00:00:00');
+                    if (now >= expDate) {
+                        card.classList.add('expired');
+                    }
+                }
+            }
+
+            var backBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backBtn.classList.add('show');
+                } else {
+                    backBtn.classList.remove('show');
+                }
+            });
+            backBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+</body>
+</html>
