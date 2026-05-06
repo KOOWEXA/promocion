@@ -12,7 +12,7 @@
     <link rel="icon" type="image/jpeg" href="https://github.com/KOOWEXA/oficial/raw/refs/heads/main/KOOWEXA.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:weight@300..700&family=Space+Grotesk:weight@500..700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0066FF;
@@ -23,9 +23,8 @@
             --white: #FFFFFF;
             --gradient-1: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
             --gradient-2: linear-gradient(135deg, #7B61FF 0%, #0066FF 100%);
-            --card-border: rgba(255, 255, 255, 0.08);
             --blur-amount: 20px;
-            --transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition: 0.35s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * {
@@ -86,7 +85,7 @@
             to { transform: translate(60px, 60px); }
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, .logo-text {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
             letter-spacing: -0.02em;
@@ -108,7 +107,7 @@
         }
 
         .logo svg {
-            height: 3.5rem;
+            height: 3.8rem;
             width: auto;
             filter: drop-shadow(0 0 18px rgba(0, 102, 255, 0.6));
             transition: filter 0.5s;
@@ -125,8 +124,6 @@
 
         .promo-card {
             background: rgba(255, 255, 255, 0.02);
-            border: 2px solid transparent;
-            background-clip: padding-box;
             position: relative;
             border-radius: 40px;
             padding: 3.5rem 2.5rem 2.5rem;
@@ -141,6 +138,7 @@
             flex-direction: column;
             align-items: center;
             gap: 1.2rem;
+            border: 2px solid transparent;
         }
 
         .promo-card::before {
@@ -172,7 +170,6 @@
         .promo-card.expired {
             filter: grayscale(0.5);
             pointer-events: none;
-            position: relative;
         }
 
         .promo-card.expired::after {
@@ -186,7 +183,7 @@
             font-weight: 700;
             font-family: 'Space Grotesk', sans-serif;
             color: rgba(255, 255, 255, 0.2);
-            background: rgba(10, 14, 39, 0.8);
+            background: rgba(10, 14, 39, 0.85);
             letter-spacing: 6px;
             z-index: 5;
             border-radius: 40px;
@@ -201,7 +198,7 @@
             left: 50%;
             transform: translateX(-50%);
             background: var(--gradient-1);
-            color: white;
+            color: var(--white);
             padding: 0.6rem 2.2rem;
             border-radius: 50px;
             font-weight: 700;
@@ -253,16 +250,12 @@
             font-size: 0.45em;
             font-weight: 600;
             color: var(--gray);
-            background: none;
-            -webkit-text-fill-color: var(--gray);
         }
 
         .plan-currency-code {
             font-size: 0.35em;
             font-weight: 600;
             color: var(--secondary);
-            background: none;
-            -webkit-text-fill-color: var(--secondary);
             margin-left: 0.1em;
             letter-spacing: 1px;
         }
@@ -271,8 +264,6 @@
             font-size: 0.35em;
             font-weight: 400;
             color: var(--gray);
-            background: none;
-            -webkit-text-fill-color: var(--gray);
             margin-left: 0.2em;
         }
 
@@ -335,6 +326,16 @@
             font-weight: 600;
         }
 
+        .countdown {
+            margin-left: 0.5rem;
+            color: var(--secondary);
+            font-weight: 600;
+            background: rgba(0, 212, 170, 0.1);
+            padding: 0.15rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
         footer {
             margin-top: 3rem;
             color: var(--gray);
@@ -356,7 +357,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             font-size: 1.6rem;
             cursor: pointer;
             opacity: 0;
@@ -401,6 +402,22 @@
     </style>
 </head>
 <body>
+    <header class="container">
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" width="300" height="64" aria-label="KOOWEXA">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0066FF"/>
+                        <stop offset="50%" stop-color="#00D4AA"/>
+                        <stop offset="100%" stop-color="#7B61FF"/>
+                    </linearGradient>
+                </defs>
+                <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="url(#logoGrad)" letter-spacing="-0.02em">KOOWEXA</text>
+            </svg>
+        </div>
+    </header>
+
+    <main class="container">
         <div class="promo-card" data-expiry="2026-05-15">
             <span class="discount-badge">-25% DESCUENTO</span>
             <h2 class="plan-name">PLAN PAGO FIJO</h2>
@@ -419,43 +436,72 @@
             <div class="expiry-info">
                 <span class="icon">⏳</span>
                 <span>Válido hasta <strong>15 de mayo de 2026</strong></span>
+                <span class="countdown"></span>
             </div>
         </div>
-    </div>
+    </main>
 
     <footer>
-        <p>© 2025-2026 KOOWEXA · Promoción sujeta a términos y condiciones</p>
+        <p>&copy; 2025-2026 KOOWEXA · Promoción sujeta a términos y condiciones</p>
     </footer>
 
-    <button id="backToTop" class="back-to-top" aria-label="Volver arriba">↑</button>
+    <button id="backToTop" class="back-to-top" aria-label="Volver arriba">&uarr;</button>
 
     <script>
         (function() {
-            var now = new Date();
-            now.setHours(0, 0, 0, 0);
+            const card = document.querySelector('.promo-card');
+            const countdownEl = document.querySelector('.countdown');
+            const strongEl = document.querySelector('.expiry-info strong');
+            const backBtn = document.getElementById('backToTop');
 
-            var card = document.querySelector('.promo-card');
-            if (card) {
-                var expiry = card.getAttribute('data-expiry');
-                if (expiry) {
-                    var expDate = new Date(expiry + 'T00:00:00');
-                    if (now >= expDate) {
-                        card.classList.add('expired');
+            function getLocalMidnight(date) {
+                const d = new Date(date);
+                d.setHours(0, 0, 0, 0);
+                return d;
+            }
+
+            function updatePromoStatus() {
+                if (!card) return;
+                const expiryAttr = card.getAttribute('data-expiry');
+                if (!expiryAttr) return;
+
+                const parts = expiryAttr.split('-').map(Number);
+                const expiryDate = new Date(parts[0], parts[1] - 1, parts[2]);
+                const now = getLocalMidnight(new Date());
+                const diffMs = expiryDate - now;
+                const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+                if (daysLeft <= 0) {
+                    card.classList.add('expired');
+                    if (countdownEl) countdownEl.textContent = '';
+                } else {
+                    card.classList.remove('expired');
+                    if (countdownEl) {
+                        const text = daysLeft === 1 ? 'Último día' : daysLeft + ' días restantes';
+                        countdownEl.textContent = text;
                     }
                 }
             }
 
-            var backBtn = document.getElementById('backToTop');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
+            function handleScroll() {
+                if (!backBtn) return;
+                const scrollY = window.scrollY || window.pageYOffset;
+                if (scrollY > 300) {
                     backBtn.classList.add('show');
                 } else {
                     backBtn.classList.remove('show');
                 }
-            });
-            backBtn.addEventListener('click', function() {
+            }
+
+            function scrollToTop() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+            }
+
+            updatePromoStatus();
+            setInterval(updatePromoStatus, 3600000);
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            if (backBtn) backBtn.addEventListener('click', scrollToTop);
         })();
     </script>
 </body>
