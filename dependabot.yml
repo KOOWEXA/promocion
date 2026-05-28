@@ -1,0 +1,115 @@
+# ==========================================================
+# Dependabot Configuration for KOOWEXA Official Platform
+# ==========================================================
+# Maintains dependencies secure & up-to-date
+# Docs: https://docs.github.com/en/code-security/dependabot
+
+version: 2
+updates:
+
+  # ---------- 1. NPM / JavaScript dependencies ----------
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Havana"
+    versioning-strategy: "increase"
+    commit-message:
+      prefix: "⬆️ deps"
+      prefix-development: "🛠️ dev-deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "javascript"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "koowexa"
+    assignees:
+      - "koowexa"
+    # Avoid unnecessary major bumps that could break static site
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "jquery"
+        versions: [">= 4.0.0"]
+      - dependency-name: "bootstrap"
+        versions: ["< 5.0.0"]
+    # Auto-merge security updates (optional, requires GitHub settings)
+    # groups:
+    #   minor-patch:
+    #     patterns: ["*"]
+    #     update-types: ["minor", "patch"]
+
+  # ---------- 2. GitHub Actions (CI/CD) ----------
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Havana"
+    commit-message:
+      prefix: "🔧 ci"
+      include: "scope"
+    labels:
+      - "ci"
+      - "github-actions"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "koowexa"
+    assignees:
+      - "koowexa"
+    # Keep GitHub Actions secure without breaking workflows
+    ignore:
+      - dependency-name: "actions/checkout"
+        versions: ["< 3.0.0"]
+
+  # ---------- 3. Docker (if containerized in the future) ----------
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      day: "monday"
+      time: "10:00"
+      timezone: "America/Havana"
+    commit-message:
+      prefix: "🐳 docker"
+    labels:
+      - "docker"
+      - "dependencies"
+    open-pull-requests-limit: 2
+    reviewers:
+      - "koowexa"
+    assignees:
+      - "koowexa"
+    ignore:
+      - dependency-name: "node"
+        versions: ["< 18.x"]
+
+  # ---------- 4. Future: gomod, pip, bundler (if needed) ----------
+  # Uncomment below if you add backend services
+
+  # - package-ecosystem: "gomod"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+
+  # - package-ecosystem: "pip"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+
+  # - package-ecosystem: "bundler"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+
+# ==========================================================
+# Notes:
+# - Dependabot creates pull requests automatically.
+# - Major npm updates are ignored to prevent breaking the static site.
+# - Adjust reviewers/assignees to your GitHub username.
+# - Security updates for npm are enabled by default.
+# ==========================================================
